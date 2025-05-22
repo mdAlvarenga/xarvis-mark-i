@@ -1,12 +1,12 @@
-# Dockerfile - Xarvis Mark I 
-FROM eclipse-temurin:17-jdk
+# Etapa 1: build del JAR
+FROM gradle:8.5.0-jdk17 AS builder
 WORKDIR /app
+COPY . .
+RUN gradle clean bootJar --no-daemon
 
-# Copiamos solo lo necesario
-COPY xarvis.jar .
-
-# Exponemos el puerto por defecto
+# Etapa 2: imagen final optimizada
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar xarvis.jar
 EXPOSE 8080
-
-# Comando para ejecutar la app
-CMD ["java", "-jar", "xarvis.jar"]
+ENTRYPOINT ["java", "-jar", "xarvis.jar"]
