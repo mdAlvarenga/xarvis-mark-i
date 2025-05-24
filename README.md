@@ -1,40 +1,96 @@
-# Xarvis Mark I
+# Xarvis Mark I Core
 
-**Xarvis Mark I** es un asistente de IA personalizado, diseñado para integrarse con tu calendario, tus proyectos, y tus flujos de trabajo. Su objetivo es ayudarte a organizar, recordar, y priorizar tareas e ideas de forma inteligente. Si bien existen alternativas gratis o con costos bajos similares, nada mejor que hacer el propio para mayor flexibilidad, máximo control y practicar mientras se desarrolla.
+**Xarvis Mark I Core** es el núcleo lógico del asistente de IA personalizado **Xarvis Mark I**. Este componente se encarga del razonamiento, la memoria, el procesamiento de lenguaje y la toma de decisiones internas. No maneja entradas o salidas directamente, sino que funciona como cerebro del sistema, consultado por otros módulos como n8n o interfaces externas.
 
-## Objetivos del Proyecto
+Este proyecto forma parte de un ecosistema mayor orquestado desde [`markverse`](https://github.com/tu-usuario/markverse), donde se integran todos los servicios necesarios: interfaz gráfica, conectores como WhatsApp y Google Calendar, y automatización mediante n8n.
 
-- Gestionar eventos y recordatorios en Google Calendar
-- Conectar con WhatsApp mediante n8n
-- Enviar mails o whatsapp a contactos
-- Almacenar el estado actual de tus proyectos, ideas y contexto
-- Enviar notificaciones automáticas a través de distintos canales
-- Aprender de tus rutinas para optimizar tu productividad
+---
 
-## Estructura inicial
+## 🧠 ¿Qué hace este Core?
+
+- Procesa instrucciones de alto nivel provenientes de otros sistemas.
+- Almacena y recupera memoria de corto y largo plazo.
+- Evalúa el estado de proyectos y tareas para tomar decisiones.
+- Aplica lógica personalizada para priorizar, responder o accionar.
+- Expone una interfaz programática (API) para ser consumido por otros módulos.
+
+---
+
+## 🎯 Objetivos del Proyecto
+
+- Mantener el estado actualizado de tu agenda personal y proyectos.
+- Aprender de tus rutinas para anticipar necesidades y ayudarte a decidir.
+- Integrarse fácilmente con flujos externos como WhatsApp, email o eventos.
+- Servir como backend semántico para un asistente de IA extendido.
+
+---
+
+## 📁 Estructura del repositorio
+
+Este proyecto contiene la lógica interna de Xarvis. Su estructura está pensada para separar claramente los distintos aspectos del razonamiento:
 
 ```
 /src
-  /agent
-  /calendar
-  /projects
-  /whatsapp
-  /memory
-  /notifications
-/config
-/scripts
-Dockerfile
-README.md
+  /agent           ← Motor principal de razonamiento y decisiones
+  /calendar        ← Interpretación de datos de agenda y rutinas
+  /projects        ← Estado y análisis de ideas y proyectos en curso
+  /whatsapp        ← Lógica abstracta de interacción por chat
+  /memory          ← Manejo del conocimiento y contexto persistente
+  /notifications   ← Generación de alertas y mensajes proactivos
+/config            ← Configuración de reglas y comportamientos
+/scripts           ← Scripts de utilidad para pruebas o setup
 ```
 
-## Requisitos
+---
 
-- Java 17
+## ⚙️ Requisitos
+
+- Java 17+
 - Docker y Docker Compose
-- Cuenta de Google con acceso a Calendar
-- VPS con acceso SSH
+- Cuenta de Google con acceso a Calendar (para uso integrado)
+- VPS con acceso por SSH (para despliegue en entorno productivo)
 
-## Instalación
+---
 
-Este repositorio es construido como una imagen de Docker y utilizado dentro de `markverse`, que contiene la orquestación completa.
+## 🚀 Instalación y uso
 
+Este repositorio **no se ejecuta de forma autónoma**. Está pensado para ser utilizado como un servicio dentro de [`markverse`](https://github.com/tu-usuario/markverse), el entorno completo donde se orquesta todo el ecosistema Xarvis.
+
+1. Cloná el repositorio `markverse`:
+   ```bash
+   git clone https://github.com/tu-usuario/markverse.git
+   cd markverse
+   ```
+
+2. Asegurate de tener variables de entorno necesarias y configuraciones en orden.
+
+3. Levantá todos los servicios:
+   ```bash
+   docker compose up --build
+   ```
+
+4. Accedé a n8n para crear flujos que usen este core como backend lógico.
+
+---
+
+## 📦 ¿Por qué construir tu propio asistente?
+
+Si bien existen soluciones como Zapier, Notion AI, Google Assistant o Alexa, **Xarvis Mark I** te permite:
+- Control total sobre datos, privacidad y lógica.
+- Personalización infinita adaptada a tu forma de trabajar.
+- Aprendizaje y práctica en desarrollo real de IA, backends y automatización.
+
+---
+
+## 🧩 Próximos pasos
+
+- Integrar una base de conocimiento semántica.
+- Implementar un sistema de reglas y prioridades evolutivo.
+- Exponer una API externa para acceso desde apps móviles o web.
+- Mejorar los modelos de memoria contextual y rutinas.
+
+---
+
+## Licencia
+
+MIT. Usá, adaptá y mejorá este proyecto a tu gusto. Aprender es parte del viaje.
